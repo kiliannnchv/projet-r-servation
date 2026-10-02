@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* -------------------------------------------------------------------------- */
+/*  Design tokens : palette « forêt » + typographies                          */
+/* -------------------------------------------------------------------------- */
+@theme {
+  --color-forest-50: #effaf3;
+  --color-forest-100: #d8f3e2;
+  --color-forest-200: #b4e5c9;
+  --color-forest-300: #82d1a8;
+  --color-forest-400: #4db582;
+  --color-forest-500: #2a9966;
+  --color-forest-600: #1f7a4d;
+  --color-forest-700: #1a6241;
+  --color-forest-800: #184e36;
+  --color-forest-900: #15402e;
+  --color-forest-950: #0a2419;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-toast-in: toast-in 0.25s ease-out;
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-stone-50 text-stone-900 antialiased;
+  }
+
+  /* Le curseur « main » sur les boutons, comme sur les liens. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }

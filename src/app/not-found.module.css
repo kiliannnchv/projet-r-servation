@@ -1,0 +1,60 @@
+/*
+ * Styles propres à la page 404 (module CSS : les noms de classes sont
+ * rendus uniques par Next.js et ne peuvent pas entrer en conflit ailleurs).
+ */
+
+/* Rangée de sapins décoratifs en bas de la page. */
+.forest {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--color-forest-100);
+  pointer-events: none;
+}
+
+/* Chaque sapin se balance doucement, comme sous le vent. */
+.tree {
+  transform-origin: bottom center;
+  animation: sway 6s ease-in-out infinite;
+}
+
+/* Décalage de l'animation d'un sapin sur deux pour un effet plus naturel. */
+.tree:nth-child(even) {
+  animation-delay: -3s;
+}
+
+/* Boussole qui tourne lentement à la place du « 0 » de 404. */
+.compass {
+  display: inline;
+  width: 0.8em;
+  height: 0.8em;
+  vertical-align: -0.05em;
+  animation: spin 12s linear infinite;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* On respecte le réglage « réduire les animations » du système. */
+@media (prefers-reduced-motion: reduce) {
+  .tree,
+  .compass {
+    animation: none;
+  }
+}
